@@ -1,5 +1,5 @@
 import { WebSocketStatus } from "@/src/components/websocket-status";
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { IMessage, mock as stompMock } from "react-stomp-hooks";
 
 // https://github.com/SvenKirschbaum/react-stomp-hooks/issues/37
@@ -47,10 +47,6 @@ describe("components/websocket-status/websocket-status", () => {
         <WebSocketStatus topic="test-topic" />
       </stompMock.StompSessionProviderMock>
     );
-    
-    act(() => {
-      stompMock.mockReceiveMessage('test-topic', {  } as IMessage);
-    });
 
     expect(screen.getByText("test message")).toBeInTheDocument();
   });
